@@ -1,0 +1,211 @@
+FORMAT: 1A
+HOST: http://quick-cofee-dev.odin.pa.infobox.ru/
+
+# QUICK-COFFEE: API оператора
+
+Управление заказами
+
+##  Торговые точки [/api/supplier/place]
+
+
+### Список [GET]
++ Request
+
+    + Headers
+
+            Authorization: Basic ZGVmYXVsdDp7QTY3QjkyRjQtMUJDRi00OThDLTgwMTctMTA4NTg0MkIzNjUwfQ==
+
+
+
++ Response 200 (application/json; charset=utf-8)
+
+    + Headers
+
+            ProcessTime: 3
+            Cache-Control: private
+
+    + Body
+
+            {
+              "data": [
+                {
+                  "placeId": 10,
+                  "name": "ee",
+                  "address": "eeee1",
+                  "latitude": 1.0,
+                  "longitude": 2.0100,
+                  "supplier": {
+                    "supplierId": 3,
+                    "name": "Кафе Куриные потроха Ext 2.0",
+                    "description": "Отборные куриные головы и лапки 2",
+                    "sitelink": "http://kokoko.ru"
+                  }
+                },
+                {
+                  "placeId": 5,
+                  "name": "dot",
+                  "address": "ул. Богдана Титомира 102",
+                  "latitude": 44.74844400,
+                  "longitude": 138.65074300,
+                  "supplier": {
+                    "supplierId": 3,
+                    "name": "Кафе Куриные потроха Ext 2.0",
+                    "description": "Отборные куриные головы и лапки 2",
+                    "sitelink": "http://kokoko.ru"
+                  }
+                },
+                {
+                  "placeId": 7,
+                  "name": "1",
+                  "address": "ул. Богдана Титомира 101",
+                  "latitude": 54.74844400,
+                  "longitude": 38.65074300,
+                  "supplier": {
+                    "supplierId": 3,
+                    "name": "Кафе Куриные потроха Ext 2.0",
+                    "description": "Отборные куриные головы и лапки 2",
+                    "sitelink": "http://kokoko.ru"
+                  }
+                }
+              ]
+            }
+
+
+##  Заказы тогровой точки [/supplierapi/supplier/place/{placeId}/order]
++ Parameters
+    + placeId: `7` (number, required) - idenfifier
+
+### Список [GET]
+
+    
++ Request
+
+    + Headers
+
+            Authorization: Basic c29tZTox
+
+
++ Response 200 (application/json; charset=utf-8)
+
+    + Headers
+    
+            ProcessTime: 10
+            Cache-Control: private
+
+    + Body
+
+            {
+              "data": [
+                {
+                  "orderid": 1,
+                  "dateinsert": "2016-02-23T08:54:34.473024",
+                  "dateserve": "2016-02-21T11:20:59.139522",
+                  "datedelay": null,
+                  "statusid": 1,
+                  "name": "Создан",
+                  "total": 10000,
+                  "items": [
+                    {
+                      "itemid": 1,
+                      "name": "БигМак",
+                      "quantity": 1,
+                      "cost": 10000
+                    }
+                  ]
+                },
+                {
+                  "orderid": 3,
+                  "dateinsert": "2016-02-24T23:14:06.870917",
+                  "dateserve": "2016-02-21T11:20:59.139522",
+                  "datedelay": null,
+                  "statusid": 1,
+                  "name": "Создан",
+                  "total": 10000,
+                  "items": [
+                    {
+                      "itemid": 1,
+                      "name": "БигМак",
+                      "quantity": 1,
+                      "cost": 10000
+                    }
+                  ]
+                }
+
+
+##  Информация о заказе [/supplierapi/supplier/place/{placeId}/order/{orderId}]
++ Parameters
+    + placeId: `7` (number, required) - idenfifier
+    + orderId: `25` (number, required) - idenfifier
+
+
+### Получить [GET]
++ Request
+
+    + Headers
+
+            Authorization: Basic c29tZTox
+
+
+
++ Response 200 (application/json; charset=utf-8)
+
+    + Headers
+
+            ProcessTime: 20
+            Cache-Control: private
+
+    + Body
+
+            {
+              "data": {
+                "orderid": 35,
+                "dateinsert": "2016-02-27T07:20:39.507115",
+                "dateserve": "2016-02-27T11:20:59.139522",
+                "datedelay": null,
+                "statusid": 2,
+                "name": "Оплачен",
+                "total": 20011,
+                "items": [
+                  {
+                    "itemid": 1,
+                    "name": "БигМак",
+                    "quantity": 1,
+                    "cost": 10000
+                  },
+                  {
+                    "itemid": 2,
+                    "name": "БигМак маленький++",
+                    "quantity": 1,
+                    "cost": 10011
+                  }
+                ]
+              }
+            }
+
+
+##  Статус заказа [/supplierapi/supplier/place/{placeId}/order/{orderId}?status={statusId}]
++ Parameters
+    + placeId: `7` (number, required) - idenfifier
+    + orderId: `25` (number, required) - idenfifier
+    + statusId: `3` (number, required) - idenfifier
+    
+### Обновить [PUT]
++ Request
+
+    + Headers
+    
+            Authorization: Basic c29tZTox
+
+
++ Response 200 (application/json; charset=utf-8)
+
+    + Headers
+    
+            ProcessTime: 10
+            Cache-Control: private
+
+    + Body
+    
+            {
+              "message": "OK"
+            }
